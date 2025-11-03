@@ -1,6 +1,11 @@
 # Strapi V5 Docker Template for Cloudflare Containers
 
-Production-ready Docker deployment template for Strapi V5, optimized for Cloudflare Containers.
+Production-ready Docker deployment template for Strapi V5, optimized for Cloudflare Containers with custom subdomain support.
+
+## 🚀 Ready to Deploy?
+
+- **[QUICKSTART.md](./QUICKSTART.md)** - Deploy in ~30 minutes
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Complete deployment guide with troubleshooting
 
 ## Features
 
@@ -226,7 +231,9 @@ wrangler containers images list
 ├── .env.production.example      # Production environment template
 ├── scripts/
 │   └── generate-secrets.sh      # Secret generation utility
-└── README.md                    # This file
+├── README.md                    # This file
+├── QUICKSTART.md                # Quick deployment guide (~30 min)
+└── DEPLOYMENT.md                # Complete deployment guide
 ```
 
 ## Environment Variables
