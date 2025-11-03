@@ -1,0 +1,58 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "strapi-app"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Cloudflare Containers Configuration
+[durable_objects]
+bindings = [
+  { name = "STRAPI_CONTAINER", class_name = "StrapiContainer" }
+]
+
+[[durable_objects.bindings]]
+name = "STRAPI_CONTAINER"
+class_name = "StrapiContainer"
+
+# Container Image Configuration
+[durable_objects.bindings.script_name]
+script_name = "strapi-container"
+
+# Point to the Dockerfile
+[container]
+image = "."
+max_instances = 10
+
+# Use SQLite-backed Durable Objects
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["StrapiContainer"]
+
+# Environment Variables (for Cloudflare deployment)
+# Note: Sensitive values should be set using wrangler secrets
+[vars]
+NODE_ENV = "production"
+HOST = "0.0.0.0"
+PORT = "1337"
+
+# Database configuration for Cloudflare
+# You'll need to use Cloudflare D1 or external database
+# DATABASE_CLIENT = "better-sqlite3"  # For Cloudflare D1
+# DATABASE_FILENAME = ".tmp/data.db"
+
+# KV Namespaces (optional, for caching)
+# [[kv_namespaces]]
+# binding = "STRAPI_CACHE"
+# id = "your-kv-namespace-id"
+
+# R2 Buckets (optional, for file uploads)
+# [[r2_buckets]]
+# binding = "STRAPI_UPLOADS"
+# bucket_name = "strapi-uploads"
+
+# Build configuration
+[build]
+command = ""
+
+# Observability
+[observability]
+enabled = true
